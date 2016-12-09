@@ -13,34 +13,83 @@ print "\t\tThis is the Beginning of the One-Time-Pad Translator"
 #Sentry Variables
 x = 0
 amount_letters = 0
-key = ""
-
+key = '-'
 
 #defining functions
-def conversion():
-    message = raw_input('Enter the message you would like to encrypt with no spaces or special characters:\n')
-    message = message.lower()
-    global output
-    output = []
+#def conversion():
+  #  global message_list
+ #   message_list = []
+    #for character in message:
+   #     number = ord(character) - 97
+     #   message_list.append(number)
+    #print "\n",message_list, "is the alphanumerical order of your message in lowercase"
+
+
+def conversion(message):
+    global message_list
+    message_list = []
     for character in message:
         number = ord(character) - 97
-        output.append(number)
-    print "\n",output, "is the alphanumerical order of your message in lowercase"
+        message_list.append(number)
     
-def key_generate():
-    len(output)
-    print(''.join(choice(ascii_lowercase) for n in range(len(output)))), "is your key"
+    return message_list
 
     
+def key_generate():
+    len(message_list)
+    return ''.join(random.choice(ascii_lowercase) for i in range(len(message_list)))
+
+def condition(ls):
+    for p in ls:
+        if p >= 26:
+            return True
+    return False
+
+#Converts Message into letters again
+def encryption():
+    print "tag1"
+
+def sub_tool(ls):
+    new_M = []
+    for p in ls:
+        if p >= 26:
+            new_p = p - 26
+            ls.insert(p, new_p)
+            return
+        else:
+            new_M.append(p)
+ 
 while x == 0: 
     decision = raw_input("\nWould you like to create or decode?\nRespond with Create or Decode:\n")
 
 
-    #Start of creating
+    #Start of Creating the encoded message 
     if decision == "Create" or decision == "create":
-        conversion()
-        key_generate()
 
+        #Getting the message to encrypt
+        message = raw_input('Enter the message you would like to encrypt with no spaces or special characters:\n')
+        message = message.lower()
+        conversion(message)
+        message_alphaNum = conversion(message)
+        print "\n",message_alphaNum, "is the alphanumerical order of your message in lowercase"
+
+        #Giving user the Key
+        key = key_generate()
+        print "Your key is: ", key
+        conversion(key)
+        key_alphaNum = conversion(key)
+        print key_alphaNum, "is the alphanumerical order of your key in lowercase"
+
+        #Adding both alpha_Nums
+        encrypted_M = [x + y for x, y in zip(message_alphaNum, key_alphaNum)]
+        print "Message + key has", encrypted_M, "as its alphanumerical."
+
+        
+        if condition(encrypted_M) == False:
+            encryption()
+
+        else:
+            sub_tool(encrypted_M)
         
         x = x + 1
 
