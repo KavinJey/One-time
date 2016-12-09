@@ -50,14 +50,17 @@ def encryption():
     print "tag1"
 
 def sub_tool(ls):
-    new_M = []
-    for p in ls:
-        if p >= 26:
-            new_p = p - 26
-            ls.insert(p, new_p)
-            return
+    z = 0
+    while z < len(ls):
+        if ls[z] >= 26:
+            new_z = ls[z] - 26
+            ls.insert(z, new_z)
+            ls.pop(z)
+            z += 1
+            return 
+            
         else:
-            new_M.append(p)
+            z += 1
  
 while x == 0: 
     decision = raw_input("\nWould you like to create or decode?\nRespond with Create or Decode:\n")
