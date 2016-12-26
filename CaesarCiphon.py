@@ -10,6 +10,7 @@ from string import ascii_lowercase
 
 
 
+
 print "This is the Beginning of the One-Time-Pad Translator. This is the world's safest way of encryption. \nJust give the message and the key to the receiving persons and they",
 print "and only they can decode your message. "
 
@@ -25,7 +26,7 @@ def conversion(message):
     global message_list
     message_list = []
     for character in message:
-        number = ord(character) - 96
+        number = ord(character) - 97
         message_list.append(number)
     
     return message_list
@@ -45,7 +46,7 @@ def condition(ls):
 def alpha_Conversion(ls):
     count = 0
     for x in ls:
-        new_x = x + 96
+        new_x = x + 97
         new_x = chr(new_x)
         ls[count] = new_x
         count += 1
@@ -72,6 +73,7 @@ def add_tool(ls):
             count += 1
             
 #START OF PROGRAM
+
             
 while x == 0: 
     decision = raw_input("\nWould you like to create or decode?\nRespond with Create or Decode:\n")
@@ -127,11 +129,10 @@ while x == 0:
         e_message = conversion(e_message)
 
         if len(key) == len(e_message):
-            
             #Adding both lists 
             new_message = [x - y for x, y in zip(e_message, key)]
             add_tool(new_message)
-    
+            print new_message
             #Converting number list into alphabets
             alpha_Conversion(new_message)
             print "Your new message is: "
