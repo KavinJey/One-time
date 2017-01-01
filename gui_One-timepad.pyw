@@ -23,7 +23,7 @@ def key_generate():
 
 def condition(ls):
     for p in ls:
-        if p >= 26:
+         if p >= 26:
             return True
     return False
 
@@ -64,10 +64,7 @@ def create():
     top = Tk()
 
     #Displaying information on text
-    L1 = Label(top, text="""Welcome to creating a one-time pad, this little app\nallows one to encode their messages with one of the\nmost secure versions of encryption known to man,
-    with only a key as well as a encrypted message\nyou can send secret messages to anyone.
-
-    Enter your message with no spaces or special characters
+    L1 = Label(top, text="""\n\nEnter your message with no spaces or special characters
     below.
 
     """)
@@ -132,7 +129,7 @@ def decode():
     top = Tk()
 
     #Displaying information on text
-    L1 = Label(top, text="\t\t\tHere you can decode your message. \n")
+    L1 = Label(top, text="\n\n\t\t\tHere you can decode your message. \n")
     L1.grid()
 
     
@@ -203,10 +200,14 @@ def decode():
     B1.grid(column = 1, row = 3)
     
     
-#Buttons that make it all work 
+#Buttons that make it all work
+Label1 = Tkinter.Label(text="""Welcome to creating a one-time pad, this little app\nallows one to encode their messages with one of the\nmost secure versions of encryption known to man,
+    with only a key as well as a encrypted message\nyou can send secret messages to anyone.\n\n""")
 create = Tkinter.Button(text = "Create", command = create, width = 15)
 
 decode = Tkinter.Button(text = "Decode", command = decode, width = 15)
+
+Label1.pack()
 create.pack(side = LEFT)
 decode.pack(side = RIGHT)
 
